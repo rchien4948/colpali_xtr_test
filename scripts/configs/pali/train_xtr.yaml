@@ -3,11 +3,11 @@ config:
   output_dir: !path ../../../models/without_tabfquad/train_colpali-3b-ft-ocrvqa-224
   processor:
     () : colpali_engine.utils.wrapper.AutoProcessorWrapper
-    pretrained_model_name_or_path: "./models/paligemma-3b-ft-ocrvqa-224"
+    pretrained_model_name_or_path: "google/paligemma-3b-ft-ocrvqa-224"
     max_length: 50
   model:
     (): colpali_engine.utils.wrapper.AutoColModelWrapper
-    pretrained_model_name_or_path: "./models/paligemma-3b-ft-ocrvqa-224"
+    pretrained_model_name_or_path: "google/paligemma-3b-ft-ocrvqa-224"
     training_objective: "colbertv1"
     # attn_implementation: "eager"
     # attn_implementation: "flash_attention_2"

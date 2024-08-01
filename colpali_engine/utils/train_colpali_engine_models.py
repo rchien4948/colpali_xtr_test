@@ -12,7 +12,7 @@ from tqdm import tqdm
 from transformers import AutoTokenizer, Idefics2Processor, PreTrainedModel, PreTrainedTokenizer, TrainingArguments
 
 from colpali_engine.dataset.custom_collator import CustomCollator
-from colpali_engine.loss.colbert_loss import BiEncoderLoss, BiPairwiseCELoss, ColbertLoss, ColbertPairwiseCELoss
+from colpali_engine.loss.colbert_loss import BiEncoderLoss, BiPairwiseCELoss, ColbertLoss, ColbertPairwiseCELoss, MultiVectorLoss
 from colpali_engine.trainer.contrastive_trainer import ContrastiveTrainer
 from colpali_engine.trainer.retrieval_evaluator import CustomEvaluator
 from colpali_engine.utils.gpu_stats import print_gpu_utilization, print_summary
@@ -93,8 +93,7 @@ class ColModelTraining:
         self.current_git_hash = os.popen("git rev-parse HEAD").read().strip()
         self.retriever_evaluator = CustomEvaluator(
             is_multi_vector=(
-                isinstance(self.config.loss_func, ColbertLoss)
-                or isinstance(self.config.loss_func, ColbertPairwiseCELoss)
+                isinstance(self.config.loss_func, MultiVectorLoss)
             )
         )
 

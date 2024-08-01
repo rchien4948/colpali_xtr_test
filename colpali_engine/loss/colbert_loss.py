@@ -23,7 +23,10 @@ class BiEncoderLoss(torch.nn.Module):
         return loss_rowwise
 
 
-class ColbertLoss(torch.nn.Module):
+class MultiVectorLoss(torch.nn.Module):
+    pass
+
+class ColbertLoss(MultiVectorLoss):
     def __init__(self):
         super().__init__()
         self.ce_loss = CrossEntropyLoss()
@@ -57,7 +60,7 @@ class ColbertLoss(torch.nn.Module):
         return loss_rowwise
 
 
-class ColbertPairwiseCELoss(torch.nn.Module):
+class ColbertPairwiseCELoss(MultiVectorLoss):
     def __init__(self):
         super().__init__()
         self.ce_loss = CrossEntropyLoss()
@@ -95,7 +98,7 @@ class ColbertPairwiseCELoss(torch.nn.Module):
         return loss
 
 
-class XtrPairwiseCELoss(torch.nn.Module):
+class XtrPairwiseCELoss(MultiVectorLoss):
     def __init__(self):
         super().__init__()
         self.top_k = 3  # Better to use percentage of m(num_query_token)*B(num_document_token) for each batch?
