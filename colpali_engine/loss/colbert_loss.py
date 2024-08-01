@@ -156,8 +156,8 @@ class XtrPairwiseCELoss(torch.nn.Module):
         _, top_k_indices = torch.topk(scores_reshaped, k=k, dim=-1)
 
         # Create a mask
-        mask = torch.zeros_like(scores_reshaped, dtype=torch.bool)
-        batch_indices = torch.arange(scores_reshaped.shape[0]).unsqueeze(-1).expand(-1, k)
+        mask = torch.zeros_like(scores_reshaped, dtype=torch.bool, device=scores.device)
+        batch_indices = torch.arange(scores_reshaped.shape[0], device=scores.device).unsqueeze(-1).expand(-1, k)
 
         mask[batch_indices, top_k_indices] = True
 
