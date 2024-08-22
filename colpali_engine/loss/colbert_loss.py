@@ -206,6 +206,7 @@ def main():
     query_embeddings = torch.randn((batch_size, num_query_tokens, dim))
     doc_embeddings = torch.randn((batch_size, num_doc_tokens, dim))
     loss = XtrPairwiseCELoss()
+    print("loss = XtrPairwiseCELoss()")
     loss(query_embeddings, doc_embeddings)
 
 
